@@ -1,6 +1,6 @@
 "use client";
 
-import { FolderGit2 } from "lucide-react";
+import { FolderGit2, ExternalLink } from "lucide-react";
 
 export default function Projects() {
   const projects = [
@@ -9,6 +9,7 @@ export default function Projects() {
       description:
         "Architected a full-stack job application platform aggregating job postings from external ATS providers using custom REST APIs built with Spring Boot and Java 21. Features an asynchronous bulk onboarding pipeline supporting Excel company imports with automated validation.",
       techStack: ["React", "Next.js", "Spring Boot", "PostgreSQL", "Java 21"],
+      liveDemo: "https://job-app-fawn-kappa.vercel.app/",
       github: "https://github.com/deekshitha26001",
       gradient: "from-blue-600 via-indigo-600 to-sky-500",
       accentTag: "ATS Application Pipeline",
@@ -27,6 +28,7 @@ export default function Projects() {
       description:
         "Built a full-stack learning management platform using React and Spring Boot following a three-tier Role-Based Access Control (RBAC) architecture. Integrated GitHub REST APIs to analyze commits and pull requests alongside a real-time examination system using Spring WebSockets (STOMP).",
       techStack: ["React", "Spring Boot", "PostgreSQL", "WebSockets", "GitHub API"],
+      liveDemo: "https://lms-web-topaz.vercel.app/",
       github: "https://github.com/deekshitha26001",
       gradient: "from-purple-700 via-indigo-700 to-violet-500",
       accentTag: "LMS & GitHub REST Analytics",
@@ -46,6 +48,7 @@ export default function Projects() {
       description:
         "Developed a console-based music player using a doubly linked list data structure for efficient playlist management and song navigation. Implemented song insertion, deletion, forward/backward traversal, playback controls, and dynamic memory management.",
       techStack: ["C Language", "Doubly Linked List", "DSA", "Memory Management"],
+      liveDemo: "https://deekshitha26001.github.io/music_player/",
       github: "https://github.com/deekshitha26001",
       gradient: "from-slate-900 via-cyan-900 to-slate-800",
       accentTag: "Doubly Linked List Traversal",
@@ -78,14 +81,20 @@ export default function Projects() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <a
+          <div
             key={index}
-            href={project.github}
-            target="_blank"
-            rel="noreferrer"
-            className="sathwik-card group flex flex-col justify-between overflow-hidden border border-gray-800 cursor-pointer transition-all duration-300 hover:no-underline"
+            className="sathwik-card group flex flex-col justify-between overflow-hidden border border-gray-800 cursor-pointer transition-all duration-300 relative"
           >
-            <div>
+            {/* Primary card link opening Live Demo */}
+            <a
+              href={project.liveDemo}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute inset-0 z-10"
+              aria-label={`View live demo of ${project.title}`}
+            />
+
+            <div className="relative z-0">
               {/* Sleek Gradient & Vector Artwork Header */}
               <div
                 className={`relative w-full h-44 bg-gradient-to-br ${project.gradient} p-6 flex flex-col justify-between overflow-hidden`}
@@ -126,18 +135,35 @@ export default function Projects() {
               </div>
             </div>
 
-            {/* Bottom GitHub Pill Button */}
-            <div className="px-6 pb-6 pt-0">
-              <span className="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-xl font-mono text-xs font-bold group-hover:bg-sky-400 group-hover:text-gray-950 transition-colors shadow-sm">
+            {/* Bottom Action Bar */}
+            <div className="px-6 pb-6 pt-0 flex items-center justify-between gap-3 relative z-20">
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-xl font-mono text-xs font-bold group-hover:bg-sky-400 group-hover:text-gray-950 transition-colors shadow-sm"
+              >
+                <ExternalLink className="w-4 h-4" />
+                View Live Demo
+              </a>
+
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-gray-800/90 hover:bg-gray-700 text-gray-300 hover:text-white px-3 py-2 rounded-xl font-mono text-xs font-bold transition-colors border border-gray-700/80"
+                title="View Source Code on GitHub"
+              >
                 <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
                   <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
                 </svg>
-                GitHub Profile
-              </span>
+                <span>Code</span>
+              </a>
             </div>
-          </a>
+          </div>
         ))}
       </div>
     </section>
   );
 }
+
