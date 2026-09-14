@@ -44,6 +44,25 @@ export default function Projects() {
       ),
     },
     {
+      title: "Smart Research Assistant",
+      description:
+        "An AI-powered research assistant application that automates deep web research, aggregates multi-source insights, and generates comprehensive analysis reports using Gemini AI.",
+      techStack: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Gemini API"],
+      liveDemo: null,
+      github: "https://github.com/deekshitha26001/smart-research-assistant",
+      gradient: "from-emerald-600 via-teal-600 to-cyan-500",
+      accentTag: "Gemini AI & Web Research",
+      svgIcon: (
+        <div className="flex items-center gap-2 text-emerald-300 font-mono text-xs">
+          <span className="px-2 py-1 bg-emerald-500/20 rounded border border-emerald-500/30">Query</span>
+          <span className="text-emerald-400">→</span>
+          <span className="px-2 py-1 bg-teal-500/20 rounded border border-teal-500/30">Gemini AI</span>
+          <span className="text-emerald-400">→</span>
+          <span className="px-2 py-1 bg-cyan-500/20 rounded border border-cyan-500/30">Insights</span>
+        </div>
+      ),
+    },
+    {
       title: "Music Player (Data Structures)",
       description:
         "Developed a console-based music player using a doubly linked list data structure for efficient playlist management and song navigation. Implemented song insertion, deletion, forward/backward traversal, playback controls, and dynamic memory management.",
@@ -79,20 +98,30 @@ export default function Projects() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {projects.map((project, index) => (
           <div
             key={index}
             className="sathwik-card group flex flex-col justify-between overflow-hidden border border-gray-800 cursor-pointer transition-all duration-300 relative"
           >
-            {/* Primary card link opening Live Demo */}
-            <a
-              href={project.liveDemo}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute inset-0 z-10"
-              aria-label={`View live demo of ${project.title}`}
-            />
+            {/* Primary card link opening Live Demo or GitHub */}
+            {project.liveDemo ? (
+              <a
+                href={project.liveDemo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+                aria-label={`View live demo of ${project.title}`}
+              />
+            ) : (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute inset-0 z-10"
+                aria-label={`View GitHub repository of ${project.title}`}
+              />
+            )}
 
             <div className="relative z-0">
               {/* Sleek Gradient & Vector Artwork Header */}
@@ -137,15 +166,22 @@ export default function Projects() {
 
             {/* Bottom Action Bar */}
             <div className="px-6 pb-6 pt-0 flex items-center justify-between gap-3 relative z-20">
-              <a
-                href={project.liveDemo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-xl font-mono text-xs font-bold group-hover:bg-sky-400 group-hover:text-gray-950 transition-colors shadow-sm"
-              >
-                <ExternalLink className="w-4 h-4" />
-                View Live Demo
-              </a>
+              {project.liveDemo ? (
+                <a
+                  href={project.liveDemo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 bg-white text-gray-900 px-4 py-2 rounded-xl font-mono text-xs font-bold group-hover:bg-sky-400 group-hover:text-gray-950 transition-colors shadow-sm"
+                >
+                  <ExternalLink className="w-4 h-4" />
+                  View Live Demo
+                </a>
+              ) : (
+                <span className="inline-flex items-center gap-1.5 bg-gray-800/60 text-gray-400 px-3 py-2 rounded-xl font-mono text-xs font-medium border border-gray-700/50">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                  Runs Locally
+                </span>
+              )}
 
               <a
                 href={project.github}

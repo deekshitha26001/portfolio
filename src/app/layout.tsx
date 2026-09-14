@@ -15,6 +15,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Deekshitha P | Portfolio",
   description: "Portfolio of Deekshitha P - AI/ML Engineer & Full-Stack Developer",
+  metadataBase: new URL("https://deeksithap.vercel.app"),
+  openGraph: {
+    title: "Deekshitha P | Portfolio",
+    description: "Portfolio of Deekshitha P - AI/ML Engineer & Full-Stack Developer",
+    url: "https://deeksithap.vercel.app",
+    siteName: "Deekshitha P Portfolio",
+  },
 };
 
 export default function RootLayout({
